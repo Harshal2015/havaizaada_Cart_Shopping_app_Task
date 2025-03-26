@@ -136,7 +136,7 @@ class CartScreen extends ConsumerWidget {
                       borderRadius: BorderRadius.circular(10),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
+                          color: Colors.yellow[100]!.withAlpha(200),
                           blurRadius: 5,
                           offset: Offset(0, 3),
                         ),
