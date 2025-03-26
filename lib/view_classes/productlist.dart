@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_cart_app/Model/product.dart';
+import 'package:shopping_cart_app/view_classes/constant_variables/constant_variables.dart';
 import '../controller_class/fetched_product_api.dart';
 
 class ProductList extends StatefulWidget {
@@ -28,7 +29,7 @@ class ProductListState extends State<ProductList> {
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else if (!snapshot.hasData || snapshot.data!.products.isEmpty) {
-          return Center(child: Text('No products available.'));
+          return Center(child: Text(ConstantVariables.productListNoProductText));
         }
 
         List<Product> products = snapshot.data!.products;

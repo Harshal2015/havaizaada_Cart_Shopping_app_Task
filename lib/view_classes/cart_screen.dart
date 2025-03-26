@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shopping_cart_app/view_classes/constant_variables/constant_colors.dart';
+import 'package:shopping_cart_app/view_classes/constant_variables/constant_integers.dart';
+import 'package:shopping_cart_app/view_classes/constant_variables/constant_variables.dart';
 import '../Model/cart_provider.dart';
 
 class CartScreen extends ConsumerWidget {
@@ -10,15 +13,15 @@ class CartScreen extends ConsumerWidget {
     final cartItems = ref.watch(cartProvider);
 
     double totalPrice = cartItems.fold(
-      0,
+      ConstantIntegers.cartItemValue,
       (sum, item) => sum + (item.price * item.quantity),
     );
 
     return Scaffold(
-      appBar: AppBar(title: Text('Cart'), backgroundColor: Color(0xFFC9AB1F)),
+      appBar: AppBar(title: Text(ConstantVariables.cartText), backgroundColor: ConstantColors.cartAppBarColor),
       body:
           cartItems.isEmpty
-              ? Center(child: Text('Your cart is empty!'))
+              ? Center(child: Text(ConstantVariables.cartEmptyText))
               : Column(
                 children: [
                   Expanded(
@@ -27,10 +30,10 @@ class CartScreen extends ConsumerWidget {
                       itemBuilder: (context, index) {
                         final item = cartItems[index];
                         return Card(
-                          color: Colors.grey[300],
+                          color: Colors.grey[ConstantIntegers.cartColorValue],
                           margin: EdgeInsets.symmetric(
-                            horizontal: 8.0,
-                            vertical: 10.0,
+                            horizontal: ConstantIntegers.cartItemEdgeHorizontal,
+                            vertical: ConstantIntegers.cartItemEdgeVertical,
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),

@@ -26,6 +26,9 @@ class ConstantIntegers{
   static const double pricePaddingHorizontal = 4.0;
   static const double pricePaddingVertical = 7.0;
   static const double discountPaddingHorizontal = 7.0;
-
+  static const double cartItemValue = 0;
+  static const int cartColorValue = 300;
+  static const double cartItemEdgeVertical = 10.0;
+  static const double cartItemEdgeHorizontal = 8.0;
 
 }
