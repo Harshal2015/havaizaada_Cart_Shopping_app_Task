@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'Model/cart_item.dart';
-import 'view_classes/cart_screen.dart';
-import 'controller_class/fetched_product_api.dart';
-import 'Model/product.dart';
-import 'cart_provider.dart';
+import '../Model/cart_item.dart';
+import 'cart_screen.dart';
+import '../controller_class/fetched_product_api.dart';
+import '../Model/product.dart';
+import '../Model/cart_provider.dart';
 
 void main() {
   runApp(ProviderScope(child: MyApp()));
