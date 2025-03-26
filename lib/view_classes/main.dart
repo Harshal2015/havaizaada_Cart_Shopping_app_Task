@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shopping_cart_app/view_classes/constant_variables/constant_colors.dart';
+import 'package:shopping_cart_app/view_classes/constant_variables/constant_integers.dart';
+import 'package:shopping_cart_app/view_classes/constant_variables/constant_variables.dart';
 import '../Model/cart_item.dart';
 import 'cart_screen.dart';
 import '../controller_class/fetched_product_api.dart';
@@ -16,7 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Product Catalogue',
+      title: ConstantVariables.productCatalogueText,
       theme: ThemeData(primarySwatch: Colors.pink),
       debugShowCheckedModeBanner: false,
       home: HomeScreen(),
@@ -39,24 +42,31 @@ class HomeScreen extends ConsumerWidget {
               id: product.id,
               title: product.title,
               price: product.price,
-              image: product.images.isNotEmpty ? product.images[0] : '',
-              quantity: 1,
+              image:
+                  product.images.isNotEmpty
+                      ? product.images[ConstantIntegers.addToCartImageValue]
+                      : '',
+              quantity: ConstantIntegers.addToCartQuantity,
             ),
           );
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           backgroundColor: Colors.green,
-          content: Text('${product.title} added to cart!'),
-          duration: Duration(seconds: 2),
+          content: Text(
+            '${product.title} ${ConstantVariables.addToCartMessage}',
+          ),
+          duration: Duration(
+            seconds: ConstantIntegers.addToCartMessageSecondsValue,
+          ),
         ),
       );
     }
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFC9AB1F),
-        title: Text('Catalogue'),
+        backgroundColor: ConstantColors.appBarColor,
+        title: Text(ConstantVariables.catalogueText),
         actions: [
           IconButton(
             icon: Stack(
@@ -64,14 +74,18 @@ class HomeScreen extends ConsumerWidget {
                 Icon(Icons.shopping_cart, color: Colors.black),
                 if (cartItems.isNotEmpty)
                   Positioned(
-                    right: 0,
-                    top: 0,
+                    right: ConstantIntegers.shoppingCartPositionRight,
+                    top: ConstantIntegers.shoppingCartPositionTop,
                     child: CircleAvatar(
-                      radius: 8,
+                      radius: ConstantIntegers.shoppingCartCircularAvatarRadius,
                       backgroundColor: Colors.red,
                       child: Text(
                         '${cartItems.length}',
-                        style: TextStyle(fontSize: 12, color: Colors.white),
+                        style: TextStyle(
+                          fontSize:
+                              ConstantIntegers.shoppingCartCircularFontSize,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
@@ -108,10 +122,10 @@ class ProductGrid extends StatelessWidget {
         } else if (snapshot.hasData && snapshot.data!.products.isNotEmpty) {
           final products = snapshot.data!.products;
           return GridView.builder(
-            padding: const EdgeInsets.all(4.0),
+            padding: const EdgeInsets.all(ConstantIntegers.gridViewEdge),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 0.65,
+              crossAxisCount: ConstantIntegers.gridViewCrossAxisCount,
+              childAspectRatio: ConstantIntegers.gridChildAspectRatio,
             ),
             itemCount: products.length,
             itemBuilder: (context, index) {
@@ -121,14 +135,14 @@ class ProductGrid extends StatelessWidget {
                 brand: product.brand ?? 'Unknown',
                 price: '₹${product.price}',
                 discount:
-                    '${((product.price - (product.price * (product.discountPercentage / 100))) / product.price * 100).toStringAsFixed(2)} % OFF',
+                    '${((product.price - (product.price * (product.discountPercentage / ConstantIntegers.productCardCount))) / product.price * ConstantIntegers.productCardPriceCount).toStringAsFixed(ConstantIntegers.stringFixedValue)} % OFF',
                 image: product.images.isNotEmpty ? product.images[0] : '',
                 onAdd: () => onAddToCart(product),
               );
             },
           );
         }
-        return Center(child: Text('No products available'));
+        return Center(child: Text(ConstantVariables.noProductAvailableText));
       },
     );
   }
@@ -155,10 +169,10 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(8.0),
+      margin: const EdgeInsets.all(ConstantIntegers.productContainerEdge),
       child: Card(
-        elevation: 5,
-        color: Color(0xFFF5F5F5),
+        elevation: ConstantIntegers.productContainerElevation,
+        color: ConstantColors.productContainerColor,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
@@ -166,11 +180,11 @@ class ProductCard extends StatelessWidget {
             Stack(
               children: [
                 Container(
-                  height: 120,
+                  height: ConstantIntegers.containerProductContainerHeight,
                   width: double.infinity,
                   child: ClipRRect(
                     borderRadius: BorderRadius.vertical(
-                      top: Radius.circular(4.0),
+                      top: Radius.circular(ConstantIntegers.productCardRadius),
                     ),
                     child: Image.network(
                       image,
@@ -180,40 +194,50 @@ class ProductCard extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  right: 8,
-                  bottom: 8,
+                  right: ConstantIntegers.productCardPositionRight,
+                  bottom: ConstantIntegers.productCardPositionBottom,
                   child: ElevatedButton(
                     onPressed: onAdd,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.pink,
                       foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
+                        borderRadius: BorderRadius.circular(
+                          ConstantIntegers.addElevatedButtonBorderRadius,
+                        ),
                       ),
                       padding: EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 4,
+                        horizontal:
+                            ConstantIntegers.addElevatedButtonHorizontal,
+                        vertical: ConstantIntegers.addElevatedButtonVertical,
                       ),
                     ),
-                    child: Text('Add'),
+                    child: Text(ConstantVariables.addButtonText),
                   ),
                 ),
               ],
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(ConstantIntegers.nameEdgePadding),
               child: Text(name, style: TextStyle(fontWeight: FontWeight.bold)),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 7),
+              padding: const EdgeInsets.symmetric(
+                horizontal: ConstantIntegers.brandPaddingHorizontal,
+              ),
               child: Text(brand, style: TextStyle(color: Colors.grey)),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 7),
+              padding: const EdgeInsets.symmetric(
+                vertical: ConstantIntegers.pricePaddingVertical,
+                horizontal: ConstantIntegers.pricePaddingHorizontal,
+              ),
               child: Text(price, style: TextStyle(color: Colors.green)),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 7),
+              padding: const EdgeInsets.symmetric(
+                horizontal: ConstantIntegers.discountPaddingHorizontal,
+              ),
               child: Text(discount, style: TextStyle(color: Colors.red)),
             ),
           ],
