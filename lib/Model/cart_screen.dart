@@ -9,7 +9,6 @@ class CartScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final cartItems = ref.watch(cartProvider);
 
-    // Calculating total price
     double totalPrice = cartItems.fold(
       0,
       (sum, item) => sum + (item.price * item.quantity),
