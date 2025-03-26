@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'Model/cart_item.dart';
-import 'Model/cart_screen.dart';
-import 'Model/fetched_product.dart';
+import 'view_classes/cart_screen.dart';
+import 'controller_class/fetched_product_api.dart';
 import 'Model/product.dart';
 import 'cart_provider.dart';
 

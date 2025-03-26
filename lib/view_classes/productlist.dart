@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_cart_app/Model/product.dart';
-import 'fetched_product.dart';
+import '../controller_class/fetched_product_api.dart';
 
 class ProductList extends StatefulWidget {
   const ProductList({super.key});
