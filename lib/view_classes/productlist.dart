@@ -29,7 +29,9 @@ class ProductListState extends State<ProductList> {
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else if (!snapshot.hasData || snapshot.data!.products.isEmpty) {
-          return Center(child: Text(ConstantVariables.productListNoProductText));
+          return Center(
+            child: Text(ConstantVariables.productListNoProductText),
+          );
         }
 
         List<Product> products = snapshot.data!.products;

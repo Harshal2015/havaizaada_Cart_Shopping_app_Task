@@ -8,7 +8,7 @@ class ConstantIntegers{
   static const double shoppingCartCircularFontSize = 12;
   static const double gridViewEdge = 4.0;
   static const int gridViewCrossAxisCount = 2;
-  static const double gridChildAspectRatio = 0.65;
+  static const double gridChildAspectRatio = 0.62;
   static const double productCardCount = 100;
   static const double productCardPriceCount = 100;
   static const int stringFixedValue = 2;
