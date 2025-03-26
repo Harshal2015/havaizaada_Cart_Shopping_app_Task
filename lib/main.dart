@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'Model/cart_item.dart';
 import 'Model/cart_screen.dart';
-import 'Model/fetchprodect.dart';
+import 'Model/fetched_product.dart';
 import 'Model/product.dart';
 import 'cart_provider.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_cart_app/Model/product.dart';
-import 'fetchprodect.dart';
+import 'fetched_product.dart';
 
 class ProductList extends StatefulWidget {
   const ProductList({super.key});
